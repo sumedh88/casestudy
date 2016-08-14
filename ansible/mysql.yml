@@ -1,0 +1,16 @@
+---
+- hosts: '{{ hosts }}'
+  user: root
+  environment:
+        http_proxy: http://_____:_____@_________:8080
+        https_proxy: http://_____:_____@_________:8080
+        ftp_proxy: http://_____:_____@_________:8080
+  tasks:
+   - name: Download MySql
+     apt: pkg=mysql-server-5.5 state=installed update_cache=true
+     notify:
+       - Start MySql
+ 
+  handlers:
+   - name: Start MySql
+     service: name=mysql state=started

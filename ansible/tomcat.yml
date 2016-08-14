@@ -1,0 +1,41 @@
+---
+- hosts: '{{ hosts }}'
+  user: root
+  environment:
+        http_proxy: http://--proxyuser--:--proxypassword--@hjproxy.persistent.co.in:8080
+        https_proxy: https://--proxyuser--:--proxypassword--@hjproxy.persistent.co.in:8080
+        JAVA_HOME: /usr/lib/jvm/java-7-openjdk-amd64
+        CATALINA_HOME: /opt/apache-tomcat-6.0.32
+                   
+  tasks:
+   - name: Install JDK
+     apt: pkg=openjdk-7-jdk state=installed update_cache=true
+
+   - lineinfile: dest=/etc/environment state=present regexp='^JAVA_HOME' line='JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64'
+        
+   - lineinfile: dest=/root/.bashrc state=present regexp='^JAVA_HOME' line='JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64'
+
+   - name: Download Tomcat
+     get_url: url=http://archive.apache.org/dist/tomcat/tomcat-6/v6.0.32/bin/apache-tomcat-6.0.32.tar.gz dest=/opt/apache-tomcat-6.0.32.tar.gz
+
+   - name: Extract archive
+     command: chdir=/usr/local /bin/tar xvf /opt/apache-tomcat-6.0.32.tar.gz -C /opt/ creates=/opt/apache-tomcat-6.0.32
+
+   - name: Symlink install directory
+     file: src=/opt/apache-tomcat-6.0.32 path=/usr/local/tomcat state=link
+
+   - lineinfile: dest=/etc/environment state=present regexp='^CATALINA_HOME' line='CATALINA_HOME=/opt/apache-tomcat-6.0.32'
+               
+   - lineinfile: dest=/root/.bashrc state=present regexp='^CATALINA_HOME' line='CATALINA_HOME=/opt/apache-tomcat-6.0.32'   
+    
+   - name: Create script
+     copy: src=tomcatscript.sh dest=/root/tomcatscript.sh mode=0555
+
+   - name: Execute script
+     command: /opt/apache-tomcat-6.0.32/bin/startup.sh
+
+   - name: Execute script
+     command: /opt/apache-tomcat-6.0.32/bin/shutdown.sh
+     
+   - name: Execute script
+     command: /opt/apache-tomcat-6.0.32/bin/startup.sh
