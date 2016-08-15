@@ -1,9 +1,9 @@
 ---
-- hosts: '{{ hosts }}'
+- hosts: '{{ host }}'
   user: root
   environment:
-        http_proxy: http://--proxyuser--:--proxypassword--@hjproxy.persistent.co.in:8080
-        https_proxy: https://--proxyuser--:--proxypassword--@hjproxy.persistent.co.in:8080
+        http_proxy: "{{ http_proxy }}"
+        https_proxy: "{{ https_proxy }}"
         JAVA_HOME: /usr/lib/jvm/java-7-openjdk-amd64
         CATALINA_HOME: /opt/apache-tomcat-6.0.32
                    
@@ -28,9 +28,6 @@
                
    - lineinfile: dest=/root/.bashrc state=present regexp='^CATALINA_HOME' line='CATALINA_HOME=/opt/apache-tomcat-6.0.32'   
     
-   - name: Create script
-     copy: src=tomcatscript.sh dest=/root/tomcatscript.sh mode=0555
-
    - name: Execute script
      command: /opt/apache-tomcat-6.0.32/bin/startup.sh
 
