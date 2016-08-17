@@ -1,0 +1,187 @@
+starting installation with ,niloday_tamhankar,August1816,niloday_tamhankar,August1816
+Proxies obtained: http_proxy=http://niloday_tamhankar:August1816@ptproxy.persistent.co.in:8080 ftp_proxy=http://niloday_tamhankar:August1816@ptproxy.persistent.co.in:8080 all_proxy=http://niloday_tamhankar:August1816@ptproxy.persistent.co.in:8080 https_proxy=https://niloday_tamhankar:August1816@ptproxy.persistent.co.in:8080 no_proxy=127.0.0.1,10.51.238.183,gadevopsnt2,*.persistent.com,*.persistent.co.in
+Attempting to connect to SVN Repo
+D    CaseStudy
+D    readme.txt
+Checked out revision 790.
+Attempting to check status of war
+Current dir is: /home/niloday/projects/casestudy/deployscripts
+Updating existing file into svn repo
+Updating '.':
+At revision 790.
+Commiting into svn as Ready for TEST
+Create web server container in docker
+IP of web server is:,172.17.0.2
+Create db server container in docker
+IP of db server is:,172.17.0.3
+Changing into ansible dir at:,/home/niloday/projects/casestudy/ansible
+/home/niloday/projects/casestudy/ansible
+Hosts file is written. With following contents
+[WebServer]
+172.17.0.2 ansible_ssh_pass=pass
+
+[DbServer]
+172.17.0.3 ansible_ssh_pass=pass
+Run Ansible Playbook for WEB Server host to Install Tomact
+
+PLAY [172.17.0.2] **************************************************************
+
+TASK [setup] *******************************************************************
+ok: [172.17.0.2]
+
+TASK [Install JDK] *************************************************************
+changed: [172.17.0.2]
+
+TASK [lineinfile] **************************************************************
+changed: [172.17.0.2]
+
+TASK [lineinfile] **************************************************************
+changed: [172.17.0.2]
+
+TASK [lineinfile] **************************************************************
+changed: [172.17.0.2]
+
+TASK [Download Tomcat] *********************************************************
+changed: [172.17.0.2]
+
+TASK [Extract archive] *********************************************************
+changed: [172.17.0.2]
+
+TASK [Symlink install directory] ***********************************************
+changed: [172.17.0.2]
+
+TASK [lineinfile] **************************************************************
+changed: [172.17.0.2]
+
+TASK [lineinfile] **************************************************************
+changed: [172.17.0.2]
+
+TASK [Execute script] **********************************************************
+changed: [172.17.0.2]
+
+TASK [Execute script] **********************************************************
+changed: [172.17.0.2]
+
+TASK [Execute script] **********************************************************
+changed: [172.17.0.2]
+
+PLAY RECAP *********************************************************************
+172.17.0.2                 : ok=13   changed=12   unreachable=0    failed=0   
+
+Run Ansible Playbook for DB Server host to Install MySQL
+
+PLAY [Install MySQL for production ready server] *******************************
+
+TASK [setup] *******************************************************************
+ok: [172.17.0.3]
+
+TASK [Set MySQL root password before installing] *******************************
+changed: [172.17.0.3]
+
+TASK [Confirm MySQL root password before installing] ***************************
+changed: [172.17.0.3]
+
+TASK [Install MySQL] ***********************************************************
+changed: [172.17.0.3] => (item=[u'mysql-server', u'mysql-client', u'python-mysqldb'])
+
+TASK [ensure mysql is running and starts on boot] ******************************
+ok: [172.17.0.3]
+
+TASK [Force mysql service start now] *******************************************
+changed: [172.17.0.3]
+
+TASK [Secures the MySQL root user] *********************************************
+ok: [172.17.0.3] => (item=1038679ecea5)
+ok: [172.17.0.3] => (item=::1)
+ok: [172.17.0.3] => (item=127.0.0.1)
+ok: [172.17.0.3] => (item=localhost)
+
+TASK [Create root2 user] *******************************************************
+changed: [172.17.0.3]
+
+TASK [Copy MYSQL configuration file to remote host] ****************************
+changed: [172.17.0.3]
+
+TASK [Copy MySql script to remote host] ****************************************
+changed: [172.17.0.3]
+
+TASK [Execute DDL script] ******************************************************
+changed: [172.17.0.3]
+
+TASK [Force mysql service restart] *********************************************
+changed: [172.17.0.3]
+
+RUNNING HANDLER [start mysql] **************************************************
+ok: [172.17.0.3]
+
+PLAY RECAP *********************************************************************
+172.17.0.3                 : ok=13   changed=9    unreachable=0    failed=0   
+
+Changing into chef dir at:,/home/niloday/chef-repo
+/home/niloday/chef-repo
+Run knife client delete command
+Deleted client[websrvTEST]
+Run knife client delete command
+Deleted node[websrvTEST]
+Run knife bootstrap command to bootstrap the websrvTEST server as a node
+172.17.0.2 -----> Installing Chef Omnibus (-v 12)
+172.17.0.2 downloading https://omnitruck-direct.chef.io/chef/install.sh
+172.17.0.2   to file /tmp/install.sh.6772/install.sh
+172.17.0.2 trying wget...
+172.17.0.2 ubuntu 14.04 x86_64
+172.17.0.2 Getting information for chef stable 12 for ubuntu...
+172.17.0.2 downloading https://omnitruck-direct.chef.io/stable/chef/metadata?v=12&p=ubuntu&pv=14.04&m=x86_64
+172.17.0.2   to file /tmp/install.sh.6776/metadata.txt
+172.17.0.2 trying wget...
+172.17.0.2 sha1	72a0a10ba5684d1e51590c1bc022bcb2e99348c6
+172.17.0.2 sha256	973c2bc9a84822158ba7c0c360d0a25c97420f293ccbe5d8019615a411460785
+172.17.0.2 url	https://packages.chef.io/stable/ubuntu/14.04/chef_12.13.37-1_amd64.deb
+172.17.0.2 version	12.13.37
+172.17.0.2 downloaded metadata file looks valid...
+172.17.0.2 downloading https://packages.chef.io/stable/ubuntu/14.04/chef_12.13.37-1_amd64.deb
+172.17.0.2   to file /tmp/install.sh.6776/chef_12.13.37-1_amd64.deb
+172.17.0.2 trying wget...
+172.17.0.2 Comparing checksum with sha256sum...
+172.17.0.2 Installing chef 12
+172.17.0.2 installing with dpkg...
+172.17.0.2 Selecting previously unselected package chef.
+172.17.0.2 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 22515 files and directories currently installed.)
+172.17.0.2 Preparing to unpack .../chef_12.13.37-1_amd64.deb ...
+172.17.0.2 Unpacking chef (12.13.37-1) ...
+172.17.0.2 Setting up chef (12.13.37-1) ...
+172.17.0.2 Thank you for installing Chef!
+172.17.0.2 Starting the first Chef Client run...
+172.17.0.2 Starting Chef Client, version 12.13.37[0m
+172.17.0.2 Creating a new client identity for websrvTEST using the validator key.[0m
+172.17.0.2 resolving cookbooks for run list: ["devopssvn"][0m
+172.17.0.2 Synchronizing Cookbooks:[0m
+172.17.0.2   - devopssvn (0.1.0)[0m
+172.17.0.2 Installing Cookbook Gems:[0m
+172.17.0.2 Compiling Cookbooks...[0m
+172.17.0.2 Converging 5 resources[0m
+172.17.0.2 Recipe: devopssvn::default[0m
+172.17.0.2   * apt_package[subversion] action install
+172.17.0.2     [32m- install version 1.8.8-1ubuntu3.2 of package subversion[0m
+172.17.0.2 [0m  * execute[Get war file] action run
+172.17.0.2     [32m- execute /usr/bin/svn co --depth=immediates --username niloday_tamhankar --password August1816  --no-auth-cache --non-interactive --trust-server-cert  https://svn.persistent.co.in/svn/DevOps_Compt/niloday_tamhankar /root/[0m
+172.17.0.2 [0m  * remote_file[Move WAR to Tomcat] action create
+172.17.0.2     [32m- create new file /opt/apache-tomcat-6.0.32/webapps/webapp.war[0m
+172.17.0.2     [32m- update content in file /opt/apache-tomcat-6.0.32/webapps/webapp.war from none to e47419[0m
+172.17.0.2     [37m(new content is binary, diff output suppressed)[0m
+172.17.0.2     [32m- change mode from '' to '0777'[0m
+172.17.0.2     [32m- change owner from '' to 'root'[0m
+172.17.0.2     [32m- change group from '' to 'root'[0m
+172.17.0.2 [0m  * execute[Stop Tomcat] action run
+172.17.0.2     [32m- execute sh /opt/apache-tomcat-6.0.32/bin/shutdown.sh[0m
+172.17.0.2 [0m  * execute[Start Tomcat] action run
+172.17.0.2     [32m- execute sh /opt/apache-tomcat-6.0.32/bin/startup.sh[0m
+172.17.0.2 [0m[0m
+172.17.0.2 Running handlers:[0m
+172.17.0.2 Running handlers complete
+172.17.0.2 [0mChef Client finished, 5/5 resources updated in 29 seconds[0m
+Now execute UI automation tests
+TODO - This is work in progress
+Go back to original working directory
+/home/niloday/chef-repo
+Kill docker containers
+Remove docker containers

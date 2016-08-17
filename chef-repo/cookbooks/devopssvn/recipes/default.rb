@@ -8,20 +8,13 @@
 #
 package "subversion"
 
-execute 'svnrepodir' do
-  command '/bin/mkdir /root/niloday_tamhankar'
+
+execute "Get war file" do
+    command "/usr/bin/svn co --depth=immediates --username niloday_tamhankar --password August1816  --no-auth-cache --non-interactive --trust-server-cert  https://svn.persistent.co.in/svn/DevOps_Compt/niloday_tamhankar /root/"
 end
 
-subversion "https://svn.persistent.co.in/svn/DevOps_Compt/niloday_tamhankar/webapp.war" do
-  repository "https://svn.persistent.co.in/svn/DevOps_Compt/niloday_tamhankar/"
-  destination "/root/niloday_tamhankar"
-  svn_username "niloday_tamhankar"
-  svn_password "August1816"
-  action :force_export
-end
-
-remote_file "Move WAR to webapps" do 
-  source "file:///root/niloday_tamhankar/webapp.war" 
+remote_file "Move WAR to Tomcat" do 
+  source "file:///root/webapp.war" 
   path "/opt/apache-tomcat-6.0.32/webapps/webapp.war"
   owner 'root'
   group 'root'
