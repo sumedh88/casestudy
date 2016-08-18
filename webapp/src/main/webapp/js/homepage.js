@@ -4,7 +4,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		var id=$("#id").val();
 		var passwd=$("#passwd").val();
-		
+		//comment
 		dbhost = sessionStorage.getItem('dbhost');
 		dbport=sessionStorage.getItem('dbport');
 		dbname=sessionStorage.getItem('dbname');
