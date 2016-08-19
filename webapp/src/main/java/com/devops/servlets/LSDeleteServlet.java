@@ -14,13 +14,8 @@ public class LSDeleteServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String dbHost = request.getParameter("dbhost");
-		String dbPort = request.getParameter("dbport");
-		String dbName = request.getParameter("dbname");
-		String dbUser = request.getParameter("dbuser");
-		String dbPasswd = request.getParameter("dbpasswd");
 			
-		new DBClass(dbHost ,dbPort ,dbName ,dbUser ,dbPasswd).deleteLateStay(Integer.parseInt(request.getParameter("id")));
+		new DBClass().deleteLateStay(Integer.parseInt(request.getParameter("id")));
 	}
 
 }

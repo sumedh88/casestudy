@@ -1,15 +1,44 @@
 package com.devops.DAO;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
+import java.util.Properties;
 
 import com.devops.BO.Employee;
+
 
 public class DBClass {
 	
 	Connection conn = null;
 	Statement stmt = null;
+	String dbHost,dbPort,dbName,dbUser,dbPasswd;
 	
-	public DBClass(String dbHost,String dbPort,String dbName,String dbUser,String dbPasswd){
-        try {
+	public DBClass(){
+		
+    	Properties prop = new Properties();
+		InputStream input = null;
+		try {
+		      input = getClass().getClassLoader().getResourceAsStream("config.properties");
+		      prop.load(input);
+		      dbHost=prop.getProperty("dbhost");
+		      dbPort=prop.getProperty("dbport");
+		      dbName=prop.getProperty("dbname");
+		      dbUser=prop.getProperty("dbuser");
+		      dbPasswd=prop.getProperty("dbpasswd");
+		      
+		} catch (IOException ex) {
+		    ex.printStackTrace();
+		} finally {
+		    if (input != null) {
+		        try {
+		            input.close();
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+		    }
+		}
+		
+		try {
         	Class.forName("com.mysql.jdbc.Driver");
     		//conn = DriverManager.getConnection("jdbc:mysql://10.244.54.78:3306/devopsdb", "root", "Pspl@123");
     		conn = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName, dbUser, dbPasswd);
