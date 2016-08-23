@@ -1,5 +1,5 @@
-starting installation with ,niloday_tamhankar,August1816,niloday_tamhankar,August1816
-Proxies obtained: http_proxy=http://niloday_tamhankar:August1816@ptproxy.persistent.co.in:8080 ftp_proxy=http://niloday_tamhankar:August1816@ptproxy.persistent.co.in:8080 all_proxy=http://niloday_tamhankar:August1816@ptproxy.persistent.co.in:8080 https_proxy=https://niloday_tamhankar:August1816@ptproxy.persistent.co.in:8080 no_proxy=127.0.0.1,10.51.238.183,gadevopsnt2,*.persistent.com,*.persistent.co.in
+starting installation with ,niloday_tamhankar,Dev0ps2016,niloday_tamhankar,Dev0ps2016
+Proxies obtained: http_proxy=http://niloday_tamhankar:Dev0ps2016@ptproxy.persistent.co.in:8080 ftp_proxy=http://niloday_tamhankar:Dev0ps2016@ptproxy.persistent.co.in:8080 all_proxy=http://niloday_tamhankar:Dev0ps2016@ptproxy.persistent.co.in:8080 https_proxy=https://niloday_tamhankar:Dev0ps2016@ptproxy.persistent.co.in:8080 no_proxy=127.0.0.1,10.51.238.183,gadevopsnt2,*.persistent.com,*.persistent.co.in
 Attempting to connect to SVN Repo
 D    CaseStudy
 D    readme.txt
@@ -163,7 +163,7 @@ Run knife bootstrap command to bootstrap the websrvTEST server as a node
 172.17.0.2   * apt_package[subversion] action install
 172.17.0.2     [32m- install version 1.8.8-1ubuntu3.2 of package subversion[0m
 172.17.0.2 [0m  * execute[Get war file] action run
-172.17.0.2     [32m- execute /usr/bin/svn co --depth=immediates --username niloday_tamhankar --password August1816  --no-auth-cache --non-interactive --trust-server-cert  https://svn.persistent.co.in/svn/DevOps_Compt/niloday_tamhankar /root/[0m
+172.17.0.2     [32m- execute /usr/bin/svn co --depth=immediates --username niloday_tamhankar --password Dev0ps2016  --no-auth-cache --non-interactive --trust-server-cert  https://svn.persistent.co.in/svn/DevOps_Compt/niloday_tamhankar /root/[0m
 172.17.0.2 [0m  * remote_file[Move WAR to Tomcat] action create
 172.17.0.2     [32m- create new file /opt/apache-tomcat-6.0.32/webapps/webapp.war[0m
 172.17.0.2     [32m- update content in file /opt/apache-tomcat-6.0.32/webapps/webapp.war from none to e47419[0m

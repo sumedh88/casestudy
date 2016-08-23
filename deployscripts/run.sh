@@ -1,1 +1,1 @@
-./testserver.sh niloday_tamhankar August1816 niloday_tamhankar August1816 | tee deploy.log
+./testserver.sh niloday_tamhankar Dev0ps2016 niloday_tamhankar Dev0ps2016 | tee deploy.log
