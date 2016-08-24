@@ -10,7 +10,7 @@
 
   tasks:
     - name: Extract archive
-      command: chdir=/root/ /bin/tar xvf /root/mysql-cluster-gpl-7.3.7-linux-glibc2.5-x86_64.tar.gz -C /root/ creates=/root/mysql-cluster-gpl-7.4.12-linux-glibc2.5-x86_64      
+      command: chdir=/root/ /bin/tar -zxvf /root/mysql-cluster-gpl-7.3.7-linux-glibc2.5-x86_64.tar.gz -C /root/ creates=/root/mysql-cluster-gpl-7.4.12-linux-glibc2.5-x86_64      
 
     - name: Execute script
       script: clusterScripts/mgmtscript.sh
