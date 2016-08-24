@@ -4,7 +4,6 @@
   environment:
         http_proxy: "{{ http_proxy }}"
         https_proxy: "{{ https_proxy }}" 
-        ftp_proxy: "{{ ftp_proxy }}"
 
   tasks:
     - name: Set MySQL root password before installing
