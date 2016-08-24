@@ -1,0 +1,29 @@
+---
+- name: Install Sql Node
+  hosts: '{{ host }}'
+  environment:
+        http_proxy: "{{ http_proxy }}"
+        https_proxy: "{{ https_proxy }}" 
+        ftp_proxy: "{{ ftp_proxy }}"
+
+  tasks:
+    - name: Install needed packages
+      apt: pkg="{{ item }}" update_cache=true
+      with_items:
+        - libaio1
+        - libaio-dev
+
+    - name: Add mysql user and group
+      command: "{{ item }}"
+      with_items:
+        - groupadd mysql
+        - useradd -g mysql mysql
+
+    - name: Install MySql Cluster
+      get_url: url=http://dev.mysql.com/get/Downloads/MySQL-Cluster-7.4/mysql-cluster-gpl-7.4.12-linux-glibc2.5-x86_64.tar.gz dest=/root/mysql-cluster-gpl-7.3.7-linux-glibc2.5-x86_64.tar.gz
+  
+    - name: Extract archive
+      command: chdir=/root/ /bin/tar xvf /root/mysql-cluster-gpl-7.3.7-linux-glibc2.5-x86_64.tar.gz -C /root/ creates=/root/mysql-cluster-gpl-7.4.12-linux-glibc2.5-x86_64      
+
+    - name: Execute script
+      script: clusterScripts/sqlscript.sh
