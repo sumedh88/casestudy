@@ -8,8 +8,6 @@
         CATALINA_HOME: /opt/apache-tomcat-6.0.32
                    
   tasks:
-   - name: Install JDK
-     apt: pkg=openjdk-7-jdk state=installed update_cache=true
 
    - lineinfile: dest=/etc/environment state=present regexp='^JAVA_HOME' line='JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64'
         
