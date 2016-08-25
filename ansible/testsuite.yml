@@ -1,0 +1,17 @@
+---
+- name: Selenium Automation
+  hosts: '172.17.0.7'
+  environment:
+        http_proxy: http://sumedh_surlekar:Titan1988@hjproxy.persistent.co.in:8080
+        https_proxy: https://sumedh_surlekar:Titan1988@hjproxy.persistent.co.in:8080
+
+  tasks:
+
+
+
+    - name: Copy test cases file to remote host
+      copy: src=test.py dest=/root/
+
+
+    - name: Analyse test result
+      script: testreport.sh
