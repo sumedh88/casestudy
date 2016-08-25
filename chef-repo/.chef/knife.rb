@@ -6,7 +6,7 @@ client_key               "#{current_dir}/sumedh.pem"
 chef_server_url          "https://10.51.237.155/organizations/psl"
 cookbook_path            ["#{current_dir}/../cookbooks"]
 validation_client_name   "psl-validator"
-validation_key           "#{current_dir}/psl-validatorr.pem"
+validation_key           "#{current_dir}/psl-validator.pem"
 syntax_check_cache_path  "#/home/devops/chef-repo/.chef/syntax_check_cache"
 cookbook_path            ["/home/devops/chef-repo/cookbooks"]
 
