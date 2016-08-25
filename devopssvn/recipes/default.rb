@@ -8,16 +8,13 @@
 #
 package "subversion"
 
-subversion "https://svn.persistent.co.in/svn/DevOps_Compt/niloday_tamhankar/webapp.war" do
-  repository "https://svn.persistent.co.in/svn/DevOps_Compt/*******/"
-  destination "/root/******"
-  svn_username "*******************"
-  svn_password "***********"
-  action :export
+
+execute "Get war file" do
+    command "/usr/bin/svn co --depth=immediates --username sumedh_surlekar --password Titan1988  --no-auth-cache --non-interactive --trust-server-cert  https://svn.persistent.co.in/svn/DevOps_Compt/sumedh_surlekar /root/"
 end
 
-remote_file "Move WAR to webapps" do 
-  source "file:///root/niloday_tamhankar/webapp.war" 
+remote_file "Move WAR to Tomcat" do 
+  source "file:///root/webapp.war" 
   path "/opt/apache-tomcat-6.0.32/webapps/webapp.war"
   owner 'root'
   group 'root'
@@ -31,3 +28,4 @@ end
 execute "Start Tomcat" do
   command "sh /opt/apache-tomcat-6.0.32/bin/startup.sh"
 end
+
