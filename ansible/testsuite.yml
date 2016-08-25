@@ -7,7 +7,16 @@
 
   tasks:
 
-
+    - name: Install Packages
+      apt: pkg= {{ item }} update_cache=true
+      with_items:
+        - firefox 
+        - xvfb 
+        - python-pip 
+        - subversion
+    
+    - name: Install selenium
+      command: pip install selenium
 
     - name: Copy test cases file to remote host
       copy: src=test.py dest=/root/
