@@ -7,9 +7,20 @@
 
   tasks:
 
+<<<<<<< HEAD
     - name: install packages
       script: packages.sh
 
+=======
+    - name: Install Packages
+      apt: name= {{ item }} state=installed force=yes update_cache=yes cache_valid_time=3600
+      with_items:
+        - firefox 
+        - xvfb 
+        - python-pip 
+        - subversion
+    
+>>>>>>> 9580e838133874fcbdf3bb510f0410656222ed31
     - name: Install selenium
       shell: pip install selenium
 
