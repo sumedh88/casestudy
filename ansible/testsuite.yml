@@ -16,7 +16,7 @@
         - subversion
     
     - name: Install selenium
-      command: pip install selenium
+      pip: selenium
 
     - name: Copy test cases file to remote host
       copy: src=test.py dest=/root/
