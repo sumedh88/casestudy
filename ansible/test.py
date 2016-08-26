@@ -80,9 +80,9 @@ class Test_SignUpLink(unittest.TestCase):
 	# find the element that's name attribute is q (the google search box)
 	
 	driver.find_element_by_id('reg_emp').click()
-	driver.find_element_by_id('id').send_keys("0111")
-	driver.find_element_by_id('name').send_keys("sum")
-	driver.find_element_by_id('passwd').send_keys("password")
+	driver.find_element_by_id('id').send_keys("018541")
+	driver.find_element_by_id('name').send_keys("sum541")
+	driver.find_element_by_id('passwd').send_keys("password541")
 	driver.find_element_by_id('register').click()
         
         wait = WebDriverWait(driver, 10)
