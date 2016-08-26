@@ -2,9 +2,9 @@
 
 nohup Xvfb :10 -ac &
 export DISPLAY=:10
-firefox –safe-mode &
+firefox --safe-mode &
 
-python test.py
+python test.py $1 $2 $3
 
 result=$(sed '$!d' test_result.log)
 #echo $result
