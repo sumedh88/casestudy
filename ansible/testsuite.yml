@@ -8,7 +8,7 @@
   tasks:
 
     - name: Install Packages
-      apt: pkg= {{ item }} update_cache=true
+      apt: name= {{ item }} state=installed force=yes update_cache=yes cache_valid_time=3600
       with_items:
         - firefox 
         - xvfb 
@@ -24,4 +24,3 @@
 
     - name: Analyse test result
       script: testreport.sh
-
