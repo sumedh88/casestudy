@@ -1,26 +1,15 @@
 ---
 - name: Selenium Automation
-  hosts: 172.17.0.2 
+  hosts: '{{ host }}' 
   environment:
-        http_proxy: http://sumedh_surlekar:Titan1988@hjproxy.persistent.co.in:8080
-        https_proxy: https://sumedh_surlekar:Titan1988@hjproxy.persistent.co.in:8080
+        http_proxy: "{{ http_proxy }}"
+        https_proxy: "{{ https_proxy }}" 
 
   tasks:
 
-<<<<<<< HEAD
-    - name: install packages
+    - name: Install packages
       script: packages.sh
 
-=======
-    - name: Install Packages
-      apt: name= {{ item }} state=installed force=yes update_cache=yes cache_valid_time=3600
-      with_items:
-        - firefox 
-        - xvfb 
-        - python-pip 
-        - subversion
-    
->>>>>>> 9580e838133874fcbdf3bb510f0410656222ed31
     - name: Install selenium
       shell: pip install selenium
 
