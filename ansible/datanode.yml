@@ -4,10 +4,7 @@
   environment:
         http_proxy: "{{ http_proxy }}"
         https_proxy: "{{ https_proxy }}" 
-<<<<<<< HEAD
-=======
         ftp_proxy: "{{ ftp_proxy }}"
->>>>>>> dfaebcf1e156de199270127dbd023c844a850ac4
   tasks:
    
     - name: Extract MySql cluster archive
@@ -19,11 +16,8 @@
     - name: Copy my.cnf file to remote host
       copy: src=clusterScripts/my.cnf dest=/etc/my.cnf
  
-<<<<<<< HEAD
     - name: Edit my.cnf file
-=======
     - name: Edit config.ini file
->>>>>>> dfaebcf1e156de199270127dbd023c844a850ac4
       replace: dest=/etc/my.cnf regexp='^\[mysql_cluster\]' replace='[mysql_cluster]\nndb-connectstring={{ mgmtIP }}'
 
 

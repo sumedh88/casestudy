@@ -4,21 +4,15 @@
   environment:
         http_proxy: "{{ http_proxy }}"
         https_proxy: "{{ https_proxy }}" 
-<<<<<<< HEAD
-=======
         ftp_proxy: "{{ ftp_proxy }}"
->>>>>>> dfaebcf1e156de199270127dbd023c844a850ac4
 
   tasks:
     - name: Install needed packages
-      apt: pkg="{{ item }}" update_cache=true
+      apt: pkg= "{{ item }}" update_cache=true
       with_items:
         - libaio1
         - libaio-dev
-<<<<<<< HEAD
         - python-mysqldb
-=======
->>>>>>> dfaebcf1e156de199270127dbd023c844a850ac4
 
     - name: Add mysql user and group
       command: "{{ item }}"
@@ -27,7 +21,6 @@
         - useradd -g mysql mysql
 
     - name: Extract MySql cluster archive
-<<<<<<< HEAD
       command: chdir=/ /bin/tar -zxvf mysql-cluster-gpl-7.4.12-linux-glibc2.5-x86_64.tar.gz -C /usr/local/ creates=/usr/local/mysql-cluster-gpl-7.4.12-linux-glibc2.5-x86_64      
 
     - name: Create /etc/mysql if does not exist
@@ -43,7 +36,6 @@
       script: clusterScripts/sqlscript.sh
 
     
-=======
       command: chdir=/ /bin/tar xvf mysql-cluster-gpl-7.4.12-linux-glibc2.5-x86_64.tar.gz -C /root/ creates=/root/mysql-cluster-gpl-7.4.12-linux-glibc2.5-x86_64      
 
     - name: Execute script
@@ -54,4 +46,3 @@
  
     - name: Edit config.ini file
       replace: dest=/etc/my.cnf regexp='^\[mysql_cluster\]' replace='[mysql_cluster]\nndb-connectstring={{ mgmtIP }}'
->>>>>>> dfaebcf1e156de199270127dbd023c844a850ac4

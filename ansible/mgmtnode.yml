@@ -4,10 +4,7 @@
   environment:
         http_proxy: "{{ http_proxy }}"
         https_proxy: "{{ https_proxy }}" 
-<<<<<<< HEAD
-=======
         ftp_proxy: "{{ ftp_proxy }}"
->>>>>>> dfaebcf1e156de199270127dbd023c844a850ac4
 
   vars:
         clusterdir: /var/lib/mysql-cluster/config.ini
@@ -15,11 +12,8 @@
   tasks:
 
     - name: Extract MySql cluster archive
-<<<<<<< HEAD
       command: chdir=/ /bin/tar -zxvf mysql-cluster-gpl-7.4.12-linux-glibc2.5-x86_64.tar.gz -C /root/ creates=/root/mysql-cluster-gpl-7.4.12-linux-glibc2.5-x86_64     
-=======
       command: chdir=/ /bin/tar xvf mysql-cluster-gpl-7.4.12-linux-glibc2.5-x86_64.tar.gz -C /root/ creates=/root/mysql-cluster-gpl-7.4.12-linux-glibc2.5-x86_64     
->>>>>>> dfaebcf1e156de199270127dbd023c844a850ac4
 
     - name: Execute script
       script: clusterScripts/mgmtscript.sh
@@ -29,12 +23,13 @@
  
     - name: Edit config.ini file
       replace: dest={{ clusterdir }} regexp='^\[ndb_mgmd\]' replace='[ndb_mgmd]\nhostname={{ host }}'
-
+    
     - name: Edit config.ini file
       replace: dest={{ clusterdir }} regexp='data node \"A\":' replace='data node \"A\":\nhostname={{ dataIP1 }}'
 
     - name: Edit config.ini file
       replace: dest={{ clusterdir }} regexp='data node \"B\":' replace='data node \"B\":\nhostname={{ dataIP2 }}'
+
 
     - name: Edit config.ini file
       replace: dest={{ clusterdir }} regexp='^\[mysqld\]' replace='[mysqld]\nhostname={{ sqlIP }}'

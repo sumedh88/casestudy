@@ -1,15 +1,12 @@
 #!/bin/bash
 
-<<<<<<< HEAD
 cd /root/mysql-cluster-gpl-7.4.12-linux-glibc2.5-x86_64
 cp bin/ndb_mgm* /usr/local/bin
 cd /usr/local/bin
 chmod +x ndb_mgm*
 mkdir -p /var/lib/mysql-cluster
-=======
 cd mysql-cluster-gpl-7.4.12-linux-glibc2.5-x86_64
 cp bin/ndb_mgm* /usr/local/bin
 cd /usr/local/bin
 chmod +x ndb_mgm*
 mkdir /var/lib/mysql-cluster
->>>>>>> dfaebcf1e156de199270127dbd023c844a850ac4
