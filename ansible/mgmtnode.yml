@@ -4,7 +4,6 @@
   environment:
         http_proxy: "{{ http_proxy }}"
         https_proxy: "{{ https_proxy }}" 
-        ftp_proxy: "{{ ftp_proxy }}"
 
   vars:
         clusterdir: /var/lib/mysql-cluster/config.ini
